@@ -33,8 +33,9 @@ public class Ejercicio6 {
 			tablaNum[i] = num;
 		}
 
-		// Salto de linea
+		// Salto de linea y mensaje de lo que se mostrara a continuación.
 		System.out.println();
+		System.out.println("¿Cuales de los números introducidos son pares?");
 
 		// Hacemos un for-each para recorrer la tabla que hemos rellenado anteriormente.
 		for (int valor : tablaNum) {
