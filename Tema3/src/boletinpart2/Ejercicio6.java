@@ -14,7 +14,7 @@ public class Ejercicio6 {
 
 		// Creamos el array tablaPremio como int de tamaño 6 para almacenar la
 		// combinación de números ganadores.
-		int tablaPremio[] = { 8, 5, 9, 1, 2, 4};
+		int tablaPremio[] = { 4, 12, 19, 26, 32, 43 };
 
 		// Creamos el array tablaIntento como int de tamaño 6 para almacenar la
 		// combinación de números aleatorios entre 1 y 9.
@@ -26,17 +26,18 @@ public class Ejercicio6 {
 
 		// Creamos la clase Random para generar números aleatorios para la TablaIntento.
 		Random rand = new Random();
-		
-		//Ordenamos la tablaPremio de forma ascendente con la clase Arrays y usamos el sort.
-		Arrays.sort(tablaPremio);
+
+		// Ordenamos la tablaPremio de forma ascendente con la clase Arrays y usamos el
+		// sort.
+		Arrays.sort(tablaIntento);
 
 		// Creamos este for para recorrer la tablaIntento y rellenarla con números
 		// aleatorios entre 1 y 9.
 		for (int i = 0; i < tablaIntento.length; i++) {
-			tablaIntento[i] = rand.nextInt(1, 10);
+			tablaIntento[i] = rand.nextInt(1, 50);
 			// Comprobamos si los números de los dos boletos en la misma posición son
 			// iguales o no, si es así el contador de aciertos (cont) le sumamos 1.
-			if (tablaIntento[i] == tablaPremio[i]) {
+			if (Arrays.binarySearch(tablaPremio, tablaIntento[i]) >= 0) {
 				cont++;
 			}
 		}
@@ -46,7 +47,6 @@ public class Ejercicio6 {
 		System.out.println("Boleto premiado -->  " + Arrays.toString(tablaPremio));
 		System.out.println("Boleto aleatorio --> " + Arrays.toString(tablaIntento));
 
-		
 		System.out.println("Numero de aciertos: " + cont);
 
 	}
