@@ -57,11 +57,22 @@ public class Ejercicio2 {
 		// Mostramos un mensaje de que vamos a mostrar la tabla completa.
 		System.out.println();
 		System.out.println("Tabla completa --> ");
+
+		// Creamos este for para imprimir encima de nuestra nota el número de nota.
+		for (int i = 0; i < notasAlumnos[0].length; i++) {
+			System.out.print("\tnota " + (i + 1));
+		}
+
+		// Salto de linea
+		System.out.println();
+
 		// Creamos un for-each para recorrer cada valor de la tabla y mostrarla de forma
 		// bonita.
 		for (double[] fila : notasAlumnos) {
+			System.out.print("Alumno  ");
+			
 			for (double valor : fila) {
-				System.out.print(valor + " ");
+				System.out.print(valor + "\t");
 			}
 			System.out.println();
 		}
