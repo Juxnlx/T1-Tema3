@@ -14,25 +14,25 @@ public class Ejercicio2 {
 
 		// Creamos el array bidimensional notasAlumnos como int con 4 filas y 5 columnas
 		// para alamcenar cada nota de cada asignatura del alumno.
-		int notasAlumnos[][] = new int[4][5];
+		double notasAlumnos[][] = new double[4][5];
 
 		// Creamos la variable nota como int para almacenar la nota que irá
 		// introduciendo el usuario de cada alumno.
-		int nota;
+		double nota;
 
 		// Creamos la variable notaMedia como int para almacenar la nota media de cada
 		// alumno.
-		int notaMedia;
+		double notaMedia;
 
 		// Creamos la variable sumaNotaAlum como int para almacenar la suma de todas las
 		// notas de cada alumno.
-		int sumaNotaAlum;
+		double sumaNotaAlum;
 
 		// Creamos la variable max para almacenar la nota mas alta de cada alumno.
-		int max;
+		double max;
 
 		// Creamos la variable min para almacenar la nota mas baja de cada alumno.
-		int min;
+		double min;
 
 		// Creamos el Scanner para leer las notas de cada alumno que irá introduciendo
 		// el usuario.
@@ -46,7 +46,7 @@ public class Ejercicio2 {
 				// Le pedimos al usuario que vaya introduciendo la nota de cada alumno y la
 				// leemos.
 				System.out.println("Introduce la nota " + (j + 1) + " del alumno " + (i + 1) + " --> ");
-				nota = sc.nextInt();
+				nota = sc.nextDouble();
 
 				// Asignamos a la posición en la que nos encontremos la nota introducida
 				// anteriormente.
@@ -59,8 +59,8 @@ public class Ejercicio2 {
 		System.out.println("Tabla completa --> ");
 		// Creamos un for-each para recorrer cada valor de la tabla y mostrarla de forma
 		// bonita.
-		for (int[] fila : notasAlumnos) {
-			for (int valor : fila) {
+		for (double[] fila : notasAlumnos) {
+			for (double valor : fila) {
 				System.out.print(valor + " ");
 			}
 			System.out.println();
