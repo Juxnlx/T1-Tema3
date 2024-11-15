@@ -65,8 +65,7 @@ public class Ejercicio5 {
 				sumaColumna += sumaNumAleatorios[i][j];
 
 			}
-			// En sumaTotal concatena la suma total de cada columna.
-			sumaTotal += sumaColumna;
+			
 			// Imprimimos la suma total de cada columna.
 			System.out.print(sumaColumna + "\t");
 		}
