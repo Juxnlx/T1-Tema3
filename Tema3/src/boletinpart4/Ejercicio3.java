@@ -19,19 +19,12 @@ public class Ejercicio3 {
 		// de nuestra tabla que sera generado por el usuario.
 		int longitud;
 
-		// Creamos el Scanner para leer la longitud y el fin introducidos por el
-		// usuario.
-		Scanner sc = new Scanner(System.in);
+		// Creamos la variable fin como int para almacenar el valor hasta donde se debe
+		// de generar el número aleatorio.
+		int fin = validacion();
 
-		// Le pedimos al usuario que introduzca la longitud de la tabla y la leemos por
-		// teclado.
-		System.out.print("Introduce el la longitud de la tabla --> ");
-		longitud = sc.nextInt();
+		System.out.println(Arrays.toString(rellenaPares(longitud, fin))));
 
-		System.out.println(Arrays.toString(rellenaPares(longitud, validacionFin(sc))));
-
-		// Cierre de Scanner
-		sc.close();
 	}
 
 	/**
@@ -41,19 +34,26 @@ public class Ejercicio3 {
 	 * @param sc
 	 * @return
 	 */
-	public static int validacionFin(Scanner sc) {
+	public static int validacion() {
 
 		boolean continuar;
 
-		int fin = 0;
+		// Creamos el Scanner para leer la longitud y el fin introducidos por el
+		// usuario.
+		Scanner sc = new Scanner(System.in);
 
+		int fin; 
 		do {
 			try {
 				// Le pedimos al usuario que introduzca el valor hasta donde llegar nuestra
 				// secuencia de pares y la leemos por teclado.
 				System.out.print("Introduce el valor de fin de la tabla --> ");
 				fin = sc.nextInt();
-				assert (fin % 2 == 0) : "El valor introducido no es PAR";
+				// Le pedimos al usuario que introduzca la longitud de la tabla y la leemos por
+				// teclado.
+				//System.out.print("Introduce el la longitud de la tabla --> ");
+				//longitud = sc.nextInt();
+				assert (fin >= 2) : "El valor introducido no es PAR";
 				continuar = false;
 
 			} catch (AssertionError e) {
@@ -69,6 +69,8 @@ public class Ejercicio3 {
 			}
 
 		} while (continuar);
+
+		sc.close();
 
 		return fin;
 	}

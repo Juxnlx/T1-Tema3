@@ -1,6 +1,7 @@
 package englishexercises;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ejercicio4 {
@@ -9,8 +10,7 @@ public class Ejercicio4 {
 
 		// We create the minesweeper array as an int to store the board with the clues
 		// and the mines.
-		String minesweeper[] = { "0", "1", "*", "1", "1", "*", "*", "2", "*", "1", "1", "0", "1", "*", "1", "0", "0",
-				"0", "1", "*" };
+		String minesweeper[] = new String[20];
 
 		// We create the tracks array as int to show the tracks on the board.
 		String tracks[] = new String[20];
@@ -20,8 +20,33 @@ public class Ejercicio4 {
 		// user.
 		int userPosition;
 
+		int minas;
+
+		Random rand = new Random();
+
 		// We create the Scanner to read the position entered by the user.
 		Scanner sc = new Scanner(System.in);
+
+		minas = rand.nextInt(0, 19);
+
+		for (int i = 1; i <= 6; i++) {
+
+			while (minesweeper[minas] == "*") {
+				minas = rand.nextInt(0, 19);
+			}
+			minesweeper[minas] = "*";
+		}
+
+		for (int i = 0; i < minesweeper.length; i++) {
+			if (minesweeper[i + 1].equals("*") || minesweeper[i - 1].equals("1")
+					|| minesweeper[i + 1].equals("1")) {
+				minesweeper[i] = "1";
+			} else if (minesweeper[i - 1].equals("*") && minesweeper[i + 1].equals("*")) {
+				minesweeper[i] = "2";
+			} else if ()
+		}
+
+		System.out.println(Arrays.toString(minesweeper));
 
 		// We initialize the tracks table to ▒.
 		Arrays.fill(tracks, "▒");
