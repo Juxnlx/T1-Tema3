@@ -17,13 +17,13 @@ public class Ejercicio3 {
 
 		// Creamos la variable longitud como int para el almacenar el valor del tamaño
 		// de nuestra tabla que sera generado por el usuario.
-		int longitud;
+		int longitud = validacion();
 
 		// Creamos la variable fin como int para almacenar el valor hasta donde se debe
 		// de generar el número aleatorio.
 		int fin = validacion();
 
-		System.out.println(Arrays.toString(rellenaPares(longitud, fin))));
+		System.out.println(rellenaPares(longitud, fin));
 
 	}
 
@@ -42,18 +42,19 @@ public class Ejercicio3 {
 		// usuario.
 		Scanner sc = new Scanner(System.in);
 
-		int fin; 
+		int numero = 0; 
+		
 		do {
 			try {
 				// Le pedimos al usuario que introduzca el valor hasta donde llegar nuestra
 				// secuencia de pares y la leemos por teclado.
 				System.out.print("Introduce el valor de fin de la tabla --> ");
-				fin = sc.nextInt();
+				numero = sc.nextInt();
 				// Le pedimos al usuario que introduzca la longitud de la tabla y la leemos por
 				// teclado.
 				//System.out.print("Introduce el la longitud de la tabla --> ");
 				//longitud = sc.nextInt();
-				assert (fin >= 2) : "El valor introducido no es PAR";
+				assert (numero > 0) : "El valor introducido no es PAR";
 				continuar = false;
 
 			} catch (AssertionError e) {
@@ -72,7 +73,7 @@ public class Ejercicio3 {
 
 		sc.close();
 
-		return fin;
+		return numero;
 	}
 
 	/**
