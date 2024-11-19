@@ -57,7 +57,7 @@ public class Ejercicio6 {
 		// Creamos este for para recorrer nuestra tabla e ir rellenandola con valores
 		// aleatorios que se vayan generando.
 		for (int i = 0; i < tablaRandom.length; i++) {
-			tablaRandom[i] = rand.nextInt(1, finRandom+1);
+			tablaRandom[i] = rand.nextInt(1, finRandom + 1);
 		}
 
 		// Imprimimos un salto de linea, un mensaje explicativo y nuestra tabla de
@@ -90,9 +90,9 @@ public class Ejercicio6 {
 	public static int[] suma(int t[], int numElementos) {
 
 		// Creamos el array tablaSuma como int para almacenar la suma de números
-		// consecutivos y con una dimensión de 10 menos el número de elementos
-		// introducidos por el usuario menos 1.
-		int tablaSuma[] = new int[(10 - (numElementos - 1))];
+		// consecutivos y con una dimensión de longitud de la tabla menos el número de
+		// elementos introducidos por el usuario menos 1.
+		int tablaSuma[] = new int[(t.length - (numElementos - 1))];
 
 		// Creamos la varable suma para ir almacenando el valor de la suma de cada
 		// número.
