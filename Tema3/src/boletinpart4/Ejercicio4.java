@@ -38,8 +38,13 @@ public class Ejercicio4 {
 		// por teclado.
 		System.out.print("Introduce el valor a encontrar entre 1 - 20 --> ");
 		clave = sc.nextInt();
-		
+
+		// Imprimimos un salto de linea y mostramos un mensaje de que vamos a mostrar la
+		// tabla.
+		System.out.println();
+		System.out.println("Tabla generada aleatoriamente --> ");
 		System.out.println(Arrays.toString(tablaRandom));
+		System.out.println();
 
 		// Comprobamos si la posición que nos ha devuelto la función buscar es mayor o
 		// igual a 0.
