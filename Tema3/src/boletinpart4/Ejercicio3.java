@@ -16,14 +16,22 @@ public class Ejercicio3 {
 	public static void main(String[] args) {
 
 		// Creamos la variable longitud como int para el almacenar el valor del tamaño
-		// de nuestra tabla que sera generado por el usuario.
-		int longitud = validacion();
+		// de nuestra tabla que sera introducido por el usuario y comprobado por nuestra
+		// función validacion si es correcto o no. Por ello asignamos a longitud la
+		// función.
+		int longitud = validacion("longitud");
 
 		// Creamos la variable fin como int para almacenar el valor hasta donde se debe
-		// de generar el número aleatorio.
-		int fin = validacion();
+		// de generar el número aleatorio es introducido por el usuario y validado por
+		// la función validación. Para ello asignamos la variable a fin.
+		int fin = validacion("fin");
 
-		System.out.println(rellenaPares(longitud, fin));
+		// Mostramos un mensaje de lo que vamos a mostrar
+		System.out.println();
+		System.out.println("La tabla generada con números aleatorios es: ");
+		// Llamamos a la función rellenaPares para mostrar la tabla que nos devuelve con
+		// todos los pares ordenados.
+		System.out.println(Arrays.toString(rellenaPares(longitud, fin)));
 
 	}
 
@@ -31,30 +39,40 @@ public class Ejercicio3 {
 	 * Esta función se encarga de comprobar si el número introducido por el usuario
 	 * es par o no. Si no es par se lo pregunta otra vez.
 	 * 
-	 * @param sc
-	 * @return
+	 * @param cadena Es una cadena que pasamos por parametro para un mensaje mas
+	 *               personalizado.
+	 * @return numero El valor comprobado (si no es negativo)
 	 */
-	public static int validacion() {
+	public static int validacion(String cadena) {
 
+		// Creamos la variable continuar para indicar a nuestro bucle cuando tiene que
+		// salir de el.
 		boolean continuar;
 
-		// Creamos el Scanner para leer la longitud y el fin introducidos por el
-		// usuario.
+		// Creamos la variable número como int para almacenar el número introducido por
+		// el usuario (longitud y fin).
+		int numero = 0;
+
+		// Creamos el Scanner para leer el número introducido por el usuario.
 		Scanner sc = new Scanner(System.in);
 
-		int numero = 0; 
-		
+		// Mediante este bucle do-while comprobamos si la variable continuar es true o
+		// false, para ver si debemos de volver a preguntar el número o es correcto.
 		do {
+
+			// Mediante el try-catch controlamos las excepciones que pueden saltar y las
+			// corregimos mostrando un mensaje por consola.
 			try {
 				// Le pedimos al usuario que introduzca el valor hasta donde llegar nuestra
 				// secuencia de pares y la leemos por teclado.
-				System.out.print("Introduce el valor de fin de la tabla --> ");
+				System.out.print("Introduce el valor de " + cadena + " --> ");
 				numero = sc.nextInt();
-				// Le pedimos al usuario que introduzca la longitud de la tabla y la leemos por
-				// teclado.
-				//System.out.print("Introduce el la longitud de la tabla --> ");
-				//longitud = sc.nextInt();
-				assert (numero > 0) : "El valor introducido no es PAR";
+
+				// Comprobamos que el número introducido por teclado no sea negativo.
+				assert (numero > 0) : "El valor introducido es negativo";
+
+				// Si no es negativo continuar devuelve false por la tanto salimos del bucle y
+				// devolvemos el número.
 				continuar = false;
 
 			} catch (AssertionError e) {
@@ -71,14 +89,13 @@ public class Ejercicio3 {
 
 		} while (continuar);
 
-		sc.close();
-
+		// Devolvemos el número comprobado.
 		return numero;
 	}
 
 	/**
-	 * Esta función se encarda de rellenar nuestra tabla con números impares hasta
-	 * uno que introduzcamos nosotros. Nos devuelve la tabla ordenada.
+	 * Esta función se encarda de rellenar nuestra tabla con números pares hasta uno
+	 * que introduzcamos nosotros. Nos devuelve la tabla ordenada.
 	 * 
 	 * @param longitud El tamaño que tendra nuestra tabla.
 	 * @param fin      El valor par hasta donde debe de llegar nuestra tabla.
@@ -97,14 +114,13 @@ public class Ejercicio3 {
 		// Creamos la variable numRandom como int para almacenar números aleatorios
 		// entre 2 y fin.
 		int numRandom;
-
-		// Inicializamos la tabla al valor de fin.
-		Arrays.fill(tablaPar, fin);
+		
+		Arrays.fill(tablaPar, (fin+1));
 
 		// Con este for recorremos la tabla hasta una posición menos porque el ultimo
 		// valor siempre sera el introducido por el usuario. Y vamos añadiendo los
 		// valores par hasta terminar de recorrer la tabla.
-		for (int i = 0; i < (tablaPar.length - 1); i++) {
+		for (int i = 0; i < tablaPar.length; i++) {
 
 			// Creamos este do-while para comprobar si el número aleatorio que generamos es
 			// impar y se encuentra en la tabla. Si es alguno de esas dos cosas y solo uno
@@ -113,7 +129,7 @@ public class Ejercicio3 {
 			do {
 				// Generamos un número aleatorio entre 2 y 1 menos que el introducido por el
 				// usuario.
-				numRandom = rand.nextInt(2, fin);
+				numRandom = rand.nextInt(2, (fin+1));
 			} while (numRandom % 2 != 0 || (Arrays.binarySearch(tablaPar, numRandom) >= 0));
 
 			// Se asi
