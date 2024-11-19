@@ -14,8 +14,8 @@ public class EjercicioB3 {
 		// Declaramos el array tabla como int para almacenar una serie de números.
 		int tabla[][];
 
-		// Creamos la variable linea para almacenar la cantidad de lineas que tendra
-		// nuestra tabla.
+		// Creamos la variable size para almacenar la cantidad de lineas y columnas que
+		// tendra nuestra tabla.
 		int size;
 
 		// Creamos la variable valor como int para ir rellenando nuestro array por
