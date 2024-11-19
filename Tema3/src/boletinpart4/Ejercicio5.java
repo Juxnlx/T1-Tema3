@@ -99,7 +99,7 @@ public class Ejercicio5 {
 		for (int i = 0; i < t.length; i++) {
 			// Comprobamos si el valor que hay que buscar se encuentra en la tabla, si es
 			// así incrementamos el cont a +1.
-			if (valor == t[indiceBusqueda]) {
+			if (valor == t[i]) {
 				cont++;
 			}
 		}
