@@ -19,7 +19,7 @@ public class EjercicioB4 {
 
 		// Creamos la variable sol para devolver true o false dependiendo si la tabla es
 		// magica o no.
-		boolean sol = true;
+		boolean sol = false;
 
 		// Creamos la variable suma como int para almacenar la suma momentaneamente de
 		// cada fila y columna.
@@ -29,17 +29,50 @@ public class EjercicioB4 {
 
 		// Creamos la variable indiceBusqueda como int para recorrer cada posicion de
 		// nuestro array.
-		int indiceBusqueda = 0;
+		int indiceI = 0;
+		int indiceJ = 0;
 
-		while (indiceBusqueda < tabla.length) {
-			
-			while (indiceBusqueda < tabla[0].length) {
-				suma+= tabla[indiceBusqueda][indiceBusqueda];
+		
+		/*for (int i = 0; i < tabla.length; i++) {
+			suma = 0;
+			for (int j = 0; j < tabla[i].length; j++) {
+				suma+= tabla[i][j];
+			}
+			if (i == 0) {
+				sumaAnterior = suma;
 			}
 			
-			if (suma != )
+			if (sumaAnterior == suma) {
+				sol = true;
+			} else {
+				sol = false;
+			}
 			
-			indiceBusqueda = 0;
+			sumaAnterior = suma;
+			
+		}*/
+		
+		while (indiceI < tabla.length) {
+			suma = 0;
+			indiceJ = 0;
+			
+			while (indiceJ < tabla[indiceI].length) {
+				suma+= tabla[indiceI][indiceJ];
+				indiceJ++;
+			}
+			
+			if (indiceI == 0) {
+				sumaAnterior = suma;
+			}
+			
+			if (sumaAnterior == suma) {
+				sol = true;
+			} else {
+				sol = false;
+			}
+			
+			sumaAnterior = suma;
+			indiceI++;
 		}
 		
 		return sol;
