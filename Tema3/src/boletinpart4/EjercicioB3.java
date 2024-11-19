@@ -28,7 +28,7 @@ public class EjercicioB3 {
 
 		// Le pedimos al usuario que introduzca el tamaño que desea que tenga el array
 		// tabla.
-		System.out.print("Introduce la cantidad de lineas del array --> ");
+		System.out.print("Introduce la cantidad de lineas y columnas del array --> ");
 		size = sc.nextInt();
 
 		// Creamos nuestra tabla con las lineas y columnas introducidas por teclado para
@@ -48,6 +48,7 @@ public class EjercicioB3 {
 
 		// Mostramos la tabla ya rellena con los números introducidos por el usuario.
 		System.out.println();
+		System.out.println("Tabla introducida por usuario:");
 		// Creamos este for-each para recorrer cada valor de la tabla e imprimirlo de
 		// forma bonita.
 		for (int x[] : tabla) {
