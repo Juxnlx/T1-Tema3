@@ -16,8 +16,7 @@ public class Ejercicio4 {
 		String tracks[] = new String[20];
 
 		// We create the variable userPosition as int to store the position entered by
-		// the
-		// user.
+		// the user.
 		int userPosition;
 
 		int minas;
@@ -26,6 +25,8 @@ public class Ejercicio4 {
 
 		// We create the Scanner to read the position entered by the user.
 		Scanner sc = new Scanner(System.in);
+
+		Arrays.fill(minesweeper, "0");
 
 		minas = rand.nextInt(0, 19);
 
@@ -37,13 +38,29 @@ public class Ejercicio4 {
 			minesweeper[minas] = "*";
 		}
 
-		for (int i = 0; i < minesweeper.length; i++) {
-			if (minesweeper[i + 1].equals("*") || minesweeper[i - 1].equals("1")
-					|| minesweeper[i + 1].equals("1")) {
-				minesweeper[i] = "1";
-			} else if (minesweeper[i - 1].equals("*") && minesweeper[i + 1].equals("*")) {
+		System.out.println(Arrays.toString(minesweeper));
+		System.out.println();
+
+		if (minesweeper[0].equals("*")) {
+			minesweeper[1] = "1";
+		}
+
+		if (minesweeper[minesweeper.length - 1].equals("*")) {
+			minesweeper[minesweeper.length - 2] = "1";
+		}
+
+		for (int i = 1; i < minesweeper.length - 1; i++) {
+			if (minesweeper[i].equals("*") && (minesweeper[i + 1].equals("*") || minesweeper[i + 1].equals("*"))) {
+				minesweeper[i] = "*";
+
+			}
+			if (minesweeper[i - 1].equals("*") && minesweeper[i + 1].equals("*")) {
 				minesweeper[i] = "2";
-			} else if ()
+
+			} else if (minesweeper[i + 1].equals("*") || minesweeper[i + 1].equals("*")) {
+				minesweeper[i] = "1";
+			}
+
 		}
 
 		System.out.println(Arrays.toString(minesweeper));
@@ -51,12 +68,12 @@ public class Ejercicio4 {
 		// We initialize the tracks table to ▒.
 		Arrays.fill(tracks, "▒");
 
-		// We ask the user to enter the position they want to discover and we read it.
+		// We ask the user to enter the position they want to discover and we readit.
 		System.out.print("Enter the position to discover 0 - 19 -->");
 		userPosition = sc.nextInt();
 
-		// With this while we check if the value found in the entered position is
-		// different from "*".
+		// With this while we check if the value found in the entered position
+		// isdifferent from "*".
 		while (!minesweeper[userPosition].equals("*")) {
 			// We match in our tracks table the same track that is on our game table.
 			tracks[userPosition] = minesweeper[userPosition];
