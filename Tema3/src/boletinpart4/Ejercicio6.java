@@ -13,13 +13,21 @@ public class Ejercicio6 {
 
 	public static void main(String[] args) {
 
-		// Creamos el array tablaRadom como int de longitud 10 para almacenar varios
+		// Declaramos el array tablaRadom como int para almacenar varios
 		// números aleatorios.
-		int tablaRandom[] = new int[10];
+		int tablaRandom[];
 
 		// Creamos la variable valoresASumar como int para la cantidad de números a
 		// sumar desde cada posición.
 		int valoresASumar;
+
+		// Creamos la variable size como int para almacenar el tamaño del array
+		// introducido por el usuario.
+		int size;
+
+		// Creamos la variable finRandom como int para almacenar el número hasta donde
+		// deseamos que llegue la generación de números aleatorios.
+		int finRandom;
 
 		// Creamos la clase Scanner para leer los valores a sumar introducido por el
 		// usuario.
@@ -29,15 +37,27 @@ public class Ejercicio6 {
 		// nuestra tabla de random.
 		Random rand = new Random();
 
+		// Le pedimos al usuario que introduzca el tamaño de la tabla que desea.
+		System.out.print("Introduce el tamaño de la tabla --> ");
+		size = sc.nextInt();
+
+		// Le pedimos al usuario que introduzca hasta donde desea que llegue la
+		// generación de números aleatorios.
+		System.out.print("Introduce hasta donde deseas generar aleatorios --> ");
+		finRandom = sc.nextInt();
+
 		// Le pedimos al usuario que introduzca la cantidad de valres a sumar y la
 		// leemos.
 		System.out.print("Introduce la cantidad de elementos consecutivos a sumar --> ");
 		valoresASumar = sc.nextInt();
 
+		// Creamos la tabla con la posición introducida por el usuario.
+		tablaRandom = new int[size];
+
 		// Creamos este for para recorrer nuestra tabla e ir rellenandola con valores
 		// aleatorios que se vayan generando.
 		for (int i = 0; i < tablaRandom.length; i++) {
-			tablaRandom[i] = rand.nextInt(1, 11);
+			tablaRandom[i] = rand.nextInt(1, finRandom+1);
 		}
 
 		// Imprimimos un salto de linea, un mensaje explicativo y nuestra tabla de
