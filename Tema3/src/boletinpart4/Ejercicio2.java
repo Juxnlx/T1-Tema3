@@ -14,6 +14,10 @@ public class Ejercicio2 {
 		// tendra una dimensión de 20 posiciones.
 		int tablaRandom[] = new int[20];
 
+		// Creamos la variable max como int para almacenar el valor maximo devuelto por
+		// la función maximo.
+		int max;
+
 		// Creamos la clase Random para generar números aleatorios y almacenarlos en la
 		// tabla.
 		Random rand = new Random();
@@ -28,9 +32,12 @@ public class Ejercicio2 {
 		System.out.print("Tabla con valores random --> ");
 		System.out.println(Arrays.toString(tablaRandom));
 
-		// Llamamos a la función para que nos devuelva el valor mas alto y lo mostramos
-		// por consola.
-		System.out.println("El valor mas alto de la tabla es --> " + maximo(tablaRandom));
+		// Asignamos a la variable max la posición devuelta por la función maximo.
+		max = maximo(tablaRandom);
+
+		// Llamamos a la variable max que contine el valor máximo devuelto por la
+		// función max.
+		System.out.println("El valor mas alto de la tabla es --> " + max);
 	}
 
 	/**
