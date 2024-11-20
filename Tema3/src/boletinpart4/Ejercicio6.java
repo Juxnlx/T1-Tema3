@@ -17,6 +17,10 @@ public class Ejercicio6 {
 		// números aleatorios.
 		int tablaRandom[];
 
+		// Declaramos el array tSuma como int para almacenar la tabla devuelta por
+		// la función suma.
+		int tSuma[];
+
 		// Creamos la variable valoresASumar como int para la cantidad de números a
 		// sumar desde cada posición.
 		int valoresASumar;
@@ -65,11 +69,16 @@ public class Ejercicio6 {
 		System.out.println();
 		System.out.print("Tabla generada aleatoriamente --> ");
 		System.out.println(Arrays.toString(tablaRandom));
-		// Mostramos un mensaje explicativo y nuestra tabla devuelta llamando a la
-		// función suma. Mostrando así toda la suma de los valores con la secuencia
+		System.out.println();
+
+		// Asignamos a la variable tSuma la tabla devuelta por la función suma.
+		tSuma = suma(tablaRandom, valoresASumar);
+
+		// Mostramos un mensaje explicativo y tSuma (la tabla devuelta por la función
+		// suma). Mostrando así toda la suma de los valores con la secuencia
 		// introducida por el usuario.
 		System.out.print("Suma de valores con consecutivos de " + valoresASumar + " en " + valoresASumar + "--> ");
-		System.out.println(Arrays.toString(suma(tablaRandom, valoresASumar)));
+		System.out.println(Arrays.toString(tSuma));
 
 		// Cierre de Scanner
 		sc.close();
