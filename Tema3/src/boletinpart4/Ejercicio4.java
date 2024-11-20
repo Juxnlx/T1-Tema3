@@ -20,6 +20,10 @@ public class Ejercicio4 {
 		// el usuario y queremos saber si esta en la tabla.
 		int clave;
 
+		// Creamos la variable pos como int para almacenar la posción devuelta por la
+		// función buscar.
+		int pos;
+		
 		// Creamos el Scanner para leer la clave introducida por el usuario.
 		Scanner sc = new Scanner(System.in);
 
@@ -46,12 +50,15 @@ public class Ejercicio4 {
 		System.out.println(Arrays.toString(tablaRandom));
 		System.out.println();
 
+		//Asignamos a la variable pos la posición devuelta por la función buscar.
+		pos = buscar(tablaRandom, clave);
+		
 		// Comprobamos si la posición que nos ha devuelto la función buscar es mayor o
 		// igual a 0.
-		if (buscar(tablaRandom, clave) >= 0) {
+		if (pos >= 0) {
 			// Imprimimos un mensaje mostrando en la posición en la que se encuentra la
 			// clave.
-			System.out.println("El valor " + clave + " se encuentra en la posición " + buscar(tablaRandom, clave));
+			System.out.println("El valor " + clave + " se encuentra en la posición " + pos);
 			// Si no... (-1).
 		} else {
 			// Imprimimos el mensaje de que ese valor no se encuentra en nuestra tabla.
