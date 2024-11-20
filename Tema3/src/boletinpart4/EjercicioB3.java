@@ -22,6 +22,10 @@ public class EjercicioB3 {
 		// completo.
 		int valor;
 
+		// Creamos la variable esSimetrica como boolean para almacenar la respuesta
+		// generada por la función simetrica.
+		boolean esSimetrica;
+
 		// Creamos el Scanner para leer la el número de lineas y columnas, y los valores
 		// introducidos por teclado.
 		Scanner sc = new Scanner(System.in);
@@ -58,13 +62,15 @@ public class EjercicioB3 {
 			System.out.println();
 		}
 
-		// Salto de linea
+		// Salto de linea y asignamos a la variable esSimetrica la respuesta de la
+		// función simetrica.
 		System.out.println();
+		esSimetrica = simetrica(tabla);
 
 		// Comprobamos el resultado que nos devuelve la función simetrica y si es true
 		// muestra un mesaje de que es simetrica. Si no, nos devuelve que no es
 		// simetrica.
-		if (simetrica(tabla)) {
+		if (esSimetrica) {
 			System.out.println("La tabla es SIMETRICA");
 		} else {
 			System.out.println("La tabla NO ES SIMETRICA");
