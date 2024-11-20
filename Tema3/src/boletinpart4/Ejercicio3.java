@@ -12,11 +12,15 @@ import java.util.Scanner;
  * números pares.
  */
 public class Ejercicio3 {
-	
-	//Creamos el Scanner para leer el número introducido por el usuario.
+
+	// Creamos el Scanner para leer el número introducido por el usuario.
 	static Scanner sc = new Scanner(System.in);
-	
+
 	public static void main(String[] args) {
+
+		// Declaramos el array tPar como int para almacenar la tabla devuelta por
+		// la función rellenaPares.
+		int tPar[];
 
 		// Creamos la variable longitud como int para el almacenar el valor del tamaño
 		// de nuestra tabla que sera introducido por el usuario y comprobado por nuestra
@@ -29,12 +33,15 @@ public class Ejercicio3 {
 		// la función validación. Para ello asignamos la variable a fin.
 		int fin = validacion("fin");
 
+		// Asignamos a la tabla tPar la tabla devuelta por la función rellenaPares.
+		tPar = rellenaPares(longitud, fin);
+
 		// Mostramos un mensaje de lo que vamos a mostrar
 		System.out.println();
 		System.out.println("La tabla generada con números aleatorios es: ");
-		// Llamamos a la función rellenaPares para mostrar la tabla que nos devuelve con
-		// todos los pares ordenados.
-		System.out.println(Arrays.toString(rellenaPares(longitud, fin)));
+		// Imprimimos la tabla tPar porque es donde se almacena la tabla con todos los
+		// pares devuelta por la función rellenaPares.
+		System.out.println(Arrays.toString(tPar));
 
 		// Cierre de Scanner
 		sc.close();
@@ -57,7 +64,7 @@ public class Ejercicio3 {
 		// Creamos la variable número como int para almacenar el número introducido por
 		// el usuario (longitud y fin).
 		int numero = 0;
-		
+
 		// Mediante este bucle do-while comprobamos si la variable continuar es true o
 		// false, para ver si debemos de volver a preguntar el número o es correcto.
 		do {
