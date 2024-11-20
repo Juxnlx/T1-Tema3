@@ -16,7 +16,7 @@ public class EjercicioB5 {
 
 		// Declaramos el array tablaGirada como int para almacenar la tabla girada que
 		// nos devuelve la función gira90.
-		int tablaGirada;
+		int tablaGirada[][];
 
 		// Creamos la variable size para almacenar la cantidad de lineas y columans que
 		// tendra nuestra tabla.
@@ -47,44 +47,75 @@ public class EjercicioB5 {
 		// almacenar los valores aleatorios.
 		tabla = new int[size][size];
 
+		// Mostramos un salto de linea y lo que vamos a mostrar a continuación.
+		System.out.println();
+		System.out.println("Tabla generada de forma aleatoria --> ");
+
 		// Creamos este for para recorrer las lineas de nuestro array.
 		for (int i = 0; i < tabla.length; i++) {
 			// Creamos este for para recorrer las columnas de nuestro array.
 			for (int j = 0; j < tabla[i].length; j++) {
 
+				// Generamos números valores aleatorios para cada posición de nuestro array.
 				tabla[i][j] = rand.nextInt(1, (finRandom + 1));
+				// Imprimimos el número de forma bonita y ordenada.
 				System.out.print(tabla[i][j] + "\t");
 			}
+			// Salto de linea despues de terminar cada linea.
 			System.out.println();
 		}
 
+		// Mostramos un salto de linea y lo que vamos a mostrar a continuación.
 		System.out.println();
+		System.out.println("Tabla girada 90 grados --> ");
 
-		for (int x[] : tabla) {
+		// A nuestra variable tablaGirada le asignamos el valor que nos devuelve la
+		// función gira90.
+		tablaGirada = gira90(tabla);
+
+		// Recorremos la tabla devuelta por la función gira90 para mostrar cada uno de
+		// sus valores.
+		for (int x[] : tablaGirada) {
 			for (int y : x) {
 				System.out.print(y + "\t");
 			}
 			System.out.println();
 		}
 
+		// Cierre de Scanner
 		sc.close();
 
 	}
 
+	/**
+	 * Esta función se encarga de girar 90º la tabla pasada como parametro.
+	 * 
+	 * @param tablaInicio Tabla generada con valores aleatorios.
+	 * @return tablaGirada Una nueva tabla con los valores de la tablaIncio
+	 * 					   girados 90º.
+	 */
 	public static int[][] gira90(int tablaInicio[][]) {
 		// Creamos el array tablaGirada con las mismas dimensiones que la tabla pasada
 		// como parametro. En esta tabla almacenaremos la girada 90º.
 		int tablaGirada[][] = new int[tablaInicio.length][tablaInicio.length];
 
+		// Recorremos la tabla pasada como parametro con todos los valores aleatorios de
+		// forma normal.
 		for (int i = 0; i < tablaInicio.length; i++) {
 
 			for (int j = 0; j < tablaInicio[i].length; j++) {
 
+				// A la fila de la nueva tabla le asignamos la j ya que la recorremos por
+				// columnas y las columnas es la longitud de la tabla menos 1, menos i. Esto es
+				// porque en cada recorrido las columnas deben de valer lo mismo.
+				// tablaGirada 0, 0				tablaInicio 0, 4
+				//			   0, 1				tablaInicio 1, 4
 				tablaGirada[j][(tablaInicio.length - 1) - i] = tablaInicio[i][j];
 
 			}
 		}
-
+		
+		// Devolvemos la nueva tabla girada.
 		return tablaGirada;
 	}
 
