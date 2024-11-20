@@ -1,6 +1,5 @@
 package boletinpart4;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +13,10 @@ public class EjercicioB5 {
 		// Declaramos el array tabla como int para almacenar una serie de números
 		// aleatorios.
 		int tabla[][];
+
+		// Declaramos el array tablaGirada como int para almacenar la tabla girada que
+		// nos devuelve la función gira90.
+		int tablaGirada;
 
 		// Creamos la variable size para almacenar la cantidad de lineas y columans que
 		// tendra nuestra tabla.
@@ -54,18 +57,16 @@ public class EjercicioB5 {
 			}
 			System.out.println();
 		}
-		
-		
+
 		System.out.println();
-		
-		for (int i = 0; i < gira90(tabla).length; i++) {
-			// Creamos este for para recorrer las columnas de nuestro array.
-			for (int j = 0; j < gira90(tabla)[i].length; j++) {
-				System.out.print(gira90(tabla)[i][j] + "\t");
+
+		for (int x[] : tabla) {
+			for (int y : x) {
+				System.out.print(y + "\t");
 			}
 			System.out.println();
 		}
-		
+
 		sc.close();
 
 	}
@@ -74,16 +75,16 @@ public class EjercicioB5 {
 		// Creamos el array tablaGirada con las mismas dimensiones que la tabla pasada
 		// como parametro. En esta tabla almacenaremos la girada 90º.
 		int tablaGirada[][] = new int[tablaInicio.length][tablaInicio.length];
-		
+
 		for (int i = 0; i < tablaInicio.length; i++) {
-			
+
 			for (int j = 0; j < tablaInicio[i].length; j++) {
-				
-				tablaGirada[j][(tablaInicio.length-1)-i] = tablaInicio[i][j];
-				
+
+				tablaGirada[j][(tablaInicio.length - 1) - i] = tablaInicio[i][j];
+
 			}
 		}
-		
+
 		return tablaGirada;
 	}
 
