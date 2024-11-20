@@ -13,6 +13,10 @@ public class EjercicioB2 {
 		// números aleatorios.
 		int tablaRandom[][] = new int[4][4];
 
+		// Declaramos el array tablaTrans como int para almacenar la tabla devuelta por
+		// la función transposicionTabla.
+		int tablaTrans[][];
+
 		// Creamos la clase Radom para generar números aleatorios entre 1 y 99 ambos
 		// incluidos en nuestra tabla de random.
 		Random rand = new Random();
@@ -31,24 +35,30 @@ public class EjercicioB2 {
 			System.out.println();
 		}
 
-		// Salto de linea
+		// Imprimimos un salto de linea y un mensaje mostrando lo que vamos a imprimir.
 		System.out.println();
-
-		// Mostramos la tabla devuelta por la función transposicionTabla con los valores
-		// de nuestra tablaRandom pero transposicionados.
 		System.out.println("Tabla transposicionada:");
-		// Creamos este for para recorrer cada fila de nuestro array.
-		for (int i = 0; i < transposicionTabla(tablaRandom).length; i++) {
-			// Creamos este for para recorrer cada columna de nuestra array.
-			for (int j = 0; j < transposicionTabla(tablaRandom)[i].length; j++) {
-				System.out.print(transposicionTabla(tablaRandom)[i][j] + "\t");
+		
+		//Asignamos a la variable tablaTrans la tabla devuelta por la función transposicionTabla.
+		tablaTrans = transposicionTabla(tablaRandom);
+		
+		// Creamos este for para recorrer cada fila del array tablaTrans.
+		for (int x[] : tablaTrans) {
+			for (int y : x) {
+				System.out.print(y + "\t");
 			}
-			// Salto de linea despues de cada linea.
 			System.out.println();
 		}
 
 	}
 
+	/**
+	 * Esta función se encarga de devolver una tabla que seria la transposición de
+	 * la tabla pasada como parametro.
+	 * 
+	 * @param t Tabla rellena con valores generados aleatoriamente.
+	 * @return Devolvemos tablaTrans con los valores tansposicionados.
+	 */
 	public static int[][] transposicionTabla(int[][] t) {
 		// Creamos el array tablaTrans como int de longitud 4x4 para almacenar los
 		// valores transposicionados.
