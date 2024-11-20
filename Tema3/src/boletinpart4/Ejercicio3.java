@@ -12,7 +12,10 @@ import java.util.Scanner;
  * números pares.
  */
 public class Ejercicio3 {
-
+	
+	//Creamos el Scanner para leer el número introducido por el usuario.
+	static Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 
 		// Creamos la variable longitud como int para el almacenar el valor del tamaño
@@ -33,6 +36,8 @@ public class Ejercicio3 {
 		// todos los pares ordenados.
 		System.out.println(Arrays.toString(rellenaPares(longitud, fin)));
 
+		// Cierre de Scanner
+		sc.close();
 	}
 
 	/**
@@ -52,10 +57,7 @@ public class Ejercicio3 {
 		// Creamos la variable número como int para almacenar el número introducido por
 		// el usuario (longitud y fin).
 		int numero = 0;
-
-		// Creamos el Scanner para leer el número introducido por el usuario.
-		Scanner sc = new Scanner(System.in);
-
+		
 		// Mediante este bucle do-while comprobamos si la variable continuar es true o
 		// false, para ver si debemos de volver a preguntar el número o es correcto.
 		do {
@@ -114,8 +116,8 @@ public class Ejercicio3 {
 		// Creamos la variable numRandom como int para almacenar números aleatorios
 		// entre 2 y fin.
 		int numRandom;
-		
-		Arrays.fill(tablaPar, (fin+1));
+
+		Arrays.fill(tablaPar, (fin + 1));
 
 		// Con este for recorremos la tabla hasta una posición menos porque el ultimo
 		// valor siempre sera el introducido por el usuario. Y vamos añadiendo los
@@ -129,7 +131,7 @@ public class Ejercicio3 {
 			do {
 				// Generamos un número aleatorio entre 2 y 1 menos que el introducido por el
 				// usuario.
-				numRandom = rand.nextInt(2, (fin+1));
+				numRandom = rand.nextInt(2, (fin + 1));
 			} while (numRandom % 2 != 0 || (Arrays.binarySearch(tablaPar, numRandom) >= 0));
 
 			// Se asi
