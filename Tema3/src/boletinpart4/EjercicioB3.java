@@ -85,17 +85,33 @@ public class EjercicioB3 {
 		// Creamos la variable esSimetrica y la inicializamos a true.
 		boolean esSimetrica = true;
 
-		// Recorremos las filas y las columanas.
-		for (int i = 0; i < t.length; i++) {
-			for (int j = 0; j < t[i].length; j++) {
+		// Creamos la variable fila para recorrer las filas en nuestro while.
+		int fila = 0;
 
-				// Comprobamos si la fila es distinta a la columna, si es así es que no es
-				// simetrica.
-				if (t[i][j] != t[j][i]) {
-					// Entonces ponemos el esSimetrica a false.
+		// Creamos la variable columna para recorrer las columnas en nuestro while.
+		int columna = 0;
+
+		// Comprobamos si nuestra variable es simetrica y si el número de filas es menor
+		// que la longitud de la tabla.
+		while (esSimetrica && fila < t.length) {
+
+			// Incicializamos columna a 0;
+			columna = 0;
+
+			// Comprobamos si nuestra variable es simetrica y si el número de columnas es
+			// menor que la longitud de la tabla.
+			while (esSimetrica && columna < t[fila].length) {
+
+				// Comprobamos si las filas y columnas de nuestra tabla son distintas que el
+				// recorrido por columna y filas.
+				if (t[fila][columna] != t[columna][fila]) {
+					// Ponemos que simetrica es false y nos salimos de bucle.
 					esSimetrica = false;
 				}
+				columna++;
 			}
+
+			fila++;
 		}
 
 		// Devolvemos esSimetrica que puede contener true o false.
