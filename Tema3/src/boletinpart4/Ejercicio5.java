@@ -16,6 +16,10 @@ public class Ejercicio5 {
 		// que se repiten varias veces.
 		int tablaNumRept[];
 
+		// Declaramos el array tPosicion como int para almacenar la tabla devuelta por
+		// la función buscarTodos.
+		int tPosicion[];
+
 		// Creamos la variable valor como int para almacenar el valor que deseeamos
 		// buscar en la tabla.
 		int valor;
@@ -57,16 +61,20 @@ public class Ejercicio5 {
 			tablaNumRept[i] = rand.nextInt(1, finRandom + 1);
 		}
 
-		// Mostramos un mensaje de lo que vamos a mostrar y un salto de linea -->
+		// Mostramos un mensaje de lo que vamos a mostrar y un salto de linea.
+		System.out.println();
 		System.out.println("Tabla con datos aleatorios: ");
 		System.out.println(Arrays.toString(tablaNumRept));
 
 		// Mostramos un mensaje de lo que vamos a mostrar a continuación.
 		System.out.println();
-		System.out.print("Tabla con las posiciones donde se encuentra el valor " + valor + "--> ");
-		// Llamamos a la función buscarTodos y devolvemos la tabla con todos los indices
-		// donde se encuentra el valor.
-		System.out.println(Arrays.toString(buscarTodos(tablaNumRept, valor)));
+		System.out.print("Tabla con las posiciones donde se encuentra el valor " + valor + " --> ");
+
+		// Asignamos a la tabla tPosicion la tabla devuelta por la función buscarTodos.
+		tPosicion = buscarTodos(tablaNumRept, valor);
+		
+		//Imprimimos tPosicion que es donde se encuentra la tabla devuelta por la función buscarTodos.
+		System.out.println(Arrays.toString(tPosicion));
 
 		// Cierre de Scanner
 		sc.close();
