@@ -15,6 +15,10 @@ public class EjercicioB1 {
 		// números aleatorios.
 		int tablaRandom[][] = new int[6][10];
 
+		// Declaramos el array tablaMaxMin como int para almacenar la tabla devuelta por
+		// la función calculoMaxYMin.
+		int tablaMaxMin[];
+
 		// Creamos la clase Radom para generar números aleatorios entre 0 y 1000 ambos
 		// incluidos en nuestra tabla de random.
 		Random rand = new Random();
@@ -32,14 +36,24 @@ public class EjercicioB1 {
 			System.out.println();
 		}
 
-		// Llamamos a la función calculoMaxYMin para poder imprimir el array que nos
-		// devuelve con el max y el min.
+		// Asignamos a la tablaMaxMin el array devuelto por la función calculoMaxYMin.
+		tablaMaxMin = calculoMaxYMin(tablaRandom);
+
+		// Mostramos un salto de linea y la tablaMaxMin.
 		System.out.println();
 		System.out.print("Tabla con el MAX y min de nuestra tabla generada --> ");
-		System.out.println(Arrays.toString(calculoMaxYMin(tablaRandom)));
+		System.out.println(Arrays.toString(tablaMaxMin));
 
 	}
 
+	/**
+	 * Esta función se encarga de obtener el max y el min de una tabla pasada como
+	 * parametro y esos valores añadirlos a una nueva tabla unidimensional.
+	 * 
+	 * @param t Tabla rellena con números aleatorios
+	 * @return tablaMaxYMin Tabla con la posición 0 el número min y la posición 1 al
+	 *         max.
+	 */
 	public static int[] calculoMaxYMin(int[][] t) {
 		// Creamos el array tablaMaxYMin con una dimensión de 2 para almacenar en la
 		// posición 0 el valor mínimo y en la posición 1 el máximo.
