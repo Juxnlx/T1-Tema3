@@ -14,6 +14,10 @@ public class Ejercicio1 {
 		// recorrido de 10 dimensiones.
 		int tablaRandom[] = new int[10];
 
+		// Creamos la variable suma como int para almacenar la suma total devuelta por
+		// la función sumaValoresTabla.
+		int suma;
+
 		// Creamos la clase Random para generar números aleatorios y almacenarlos en la
 		// tabla.
 		Random rand = new Random();
@@ -24,9 +28,13 @@ public class Ejercicio1 {
 			tablaRandom[i] = rand.nextInt(1, 11);
 		}
 
-		// Llamamos a la función para que nos devuelva el valor de la suma e imprimimos
-		// el resultado.
-		System.out.println("La suma de los valores de nuestra tabla es --> " + sumaValoresTabla(tablaRandom));
+		// Asignamos a la variable suma la suma total devuelta por la función
+		// sumaValoresTabla.
+		suma = sumaValoresTabla(tablaRandom);
+
+		// Imprimimos la variable suma para mostrar la suma total devuelta por la
+		// función sumaValoresTabla.
+		System.out.println("La suma de los valores de nuestra tabla es --> " + suma);
 
 	}
 
