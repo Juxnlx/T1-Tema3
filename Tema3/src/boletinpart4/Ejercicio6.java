@@ -100,8 +100,8 @@ public class Ejercicio6 {
 
 		// Creamos el array tablaSuma como int para almacenar la suma de números
 		// consecutivos y con una dimensión de longitud de la tabla menos el número de
-		// elementos introducidos por el usuario menos 1.
-		int tablaSuma[] = new int[(t.length - (numElementos - 1))];
+		// elementos introducidos por el usuario mas 1.
+		int tablaSuma[] = new int[(t.length - numElementos + 1)];
 
 		// Creamos la varable suma para ir almacenando el valor de la suma de cada
 		// número.
