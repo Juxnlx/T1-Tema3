@@ -77,25 +77,58 @@ public class Ejercicio2 {
 			System.out.print(valor + ", ");
 		}
 
+		//Salto de linea.
 		System.out.println();
-		
+
+		//Mostramos la tabla desordenada pasada por la función desordenarTabla.
+		System.out.println();
+		System.out.println("Tabla desordenada: ");
 		for (int valor : desordenarTabla(tablaOrd)) {
 			System.out.print(valor + ", ");
 		}
-		
+
 		// Cierre de Scanner
 		sc.close();
 	}
 
+	/**
+	 * Esta función se encarga de desordenar los valores de la tabla pasada como
+	 * parametro y la devuelve ya desordenada.
+	 * 
+	 * @param t Tabla ordenada pasada como parametro con los valores ordenados.
+	 * @return La tabla pasada como parametro pero con los valores desordenados.
+	 */
 	public static int[] desordenarTabla(int t[]) {
-		
-		int posAleatoria;
-		
+
+		// Creamos la variable posAux como int para almacenar una posición aleatoria de
+		// nuestra tabla.
+		int posAux;
+
+		// Creamos la variable numAux como int para almacenar el valor de la posición
+		// que estamos recorriendo.
+		int numAux;
+
+		// Recorremos la tabla para desorganizar la tabla (cambiar las valores).
 		for (int i = 0; i < t.length; i++) {
-			posAleatoria = rand.nextInt(1, t.length);
-			t[i] = t[posAleatoria];
+
+			// Guardamos el valor de la posición que estamos recorriendo en la variable
+			// numAux para mas adelante asignar ese valor en otra posción.
+			numAux = t[i];
+
+			// En la variable posAux guardamos una posición aleatoria entre 0 y la longitud
+			// de la tabla.
+			posAux = rand.nextInt(0, t.length);
+
+			// En la posición que estamos recorriendo guardamos el valor que se encuentra en
+			// la posición aleatoria.
+			t[i] = t[posAux];
+
+			// En la posición aleatoria guardamos el valor que se encontraba antes en la
+			// posición que estabamos recorriendo.
+			t[posAux] = numAux;
 		}
-		
+
+		//Devolvemos la tabla pasada como parametro desordenada.
 		return t;
 	}
 }
