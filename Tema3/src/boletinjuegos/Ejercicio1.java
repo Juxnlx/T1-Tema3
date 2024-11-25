@@ -101,12 +101,22 @@ public class Ejercicio1 {
 		// se va recorriendo nuestras columnas.
 		int indiceCol = 0;
 
-		//Crea
+		// Creamos este while para recorrer cada fila y comprobar si enc es igual a
+		// true, si es así significa que ha encontrado el número, por lo tanto nos
+		// salimos del bucle.
 		while (!enc && indiceFila < t.length) {
 
+			// Ponemos el indice de columnas a 0 antes de cada recorrido de una nueva fila.
 			indiceCol = 0;
+
+			// Creamos este while para recorrer cada valor que se enceuntra en nuestra
+			// tabla.
 			while (indiceCol < t[indiceFila].length) {
 
+				// Comprobamos si el valor introducido por el usuario es el que estamos leyendo
+				// en este momento de la tabla. Si es así, indicamos que lo hemos encontrado,
+				// ponemos la variable enc a true, para en la siguiente fila salirnos de la
+				// lectura de mas números.
 				if (valor == t[indiceFila][indiceCol]) {
 					enc = true;
 				}
@@ -117,6 +127,8 @@ public class Ejercicio1 {
 			indiceFila++;
 		}
 
+		// Devolvemos enc donde se almacena true o false dependiendo de si se ha
+		// encontrado el número o no.
 		return enc;
 	}
 
