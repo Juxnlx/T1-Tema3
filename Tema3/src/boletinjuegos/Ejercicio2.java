@@ -20,6 +20,10 @@ public class Ejercicio2 {
 		// ordenados.
 		int tablaOrd[];
 
+		// Declaramos el array tablaDesd como int para almacenar la misma tabla pero con
+		// los valores desordenados que nos devolvera la función desordenadarTabla.
+		int tablaDesd[];
+
 		// Creamos la varible size como int para almacenar el tamaño de nuestra tabla.
 		int size;
 
@@ -77,13 +81,16 @@ public class Ejercicio2 {
 			System.out.print(valor + ", ");
 		}
 
-		//Salto de linea.
+		// Salto de linea.
 		System.out.println();
+		
+		//Al array tablaDesd le asignamos la tabla que nos devuelve la función desordenarTabla.
+		tablaDesd = desordenarTabla(tablaOrd);
 
-		//Mostramos la tabla desordenada pasada por la función desordenarTabla.
+		// Mostramos la tabla desordenada pasada por la función desordenarTabla.
 		System.out.println();
 		System.out.println("Tabla desordenada: ");
-		for (int valor : desordenarTabla(tablaOrd)) {
+		for (int valor : tablaDesd) {
 			System.out.print(valor + ", ");
 		}
 
@@ -128,7 +135,7 @@ public class Ejercicio2 {
 			t[posAux] = numAux;
 		}
 
-		//Devolvemos la tabla pasada como parametro desordenada.
+		// Devolvemos la tabla pasada como parametro desordenada.
 		return t;
 	}
 }
