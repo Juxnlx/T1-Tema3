@@ -1,6 +1,5 @@
 package boletinjuegos;
 
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -56,6 +55,9 @@ public class Ejercicio4 {
 		// con la función validarPieza.
 		pieza = validarPieza();
 
+		// Comprobamos cual es la pieza introducida por el usuario. Y dependiendo de la
+		// seleccionada se llamará a la función correspondiente y se mostrará mediante
+		// un for-each la tabla devuelta por la función.
 		switch (pieza) {
 		case 'T' -> {
 			for (char tabla[] : torre(posFila, posColumna, pieza)) {
@@ -183,50 +185,148 @@ public class Ejercicio4 {
 		return piezaAjedrez;
 	}
 
+	/**
+	 * Esta función se encarga de devolver un tablero con la torre introducida por
+	 * el usuario en la posición especifica. Ademas tambien se mostrara las
+	 * posiciones hacia donde se puede mover la torre con una 'X'.
+	 * 
+	 * @param posFila    La fila donde se encuentra nuestra torre.
+	 * @param posColumna La columna donde se encuentra nuestra torre.
+	 * @param pieza      La cifra que representa la torre utilizada por el usuario.
+	 * @return El array tablero con la torre representada y las posiciones a las que
+	 *         se puede desplazar.
+	 */
 	public static char[][] torre(int posFila, int posColumna, char pieza) {
 		// Creamos el array tablero como char para almacenar la pieza y los movimientos
-		// que podemos hacer con ella.
+		// que podemos hacer con la torre. El tamaño siempre será de 8x8.
 		char[][] tablero = new char[8][8];
 
+		// Recorremos el tablero entero para poder desplazarnos por cada linea y columna
+		// del tablero.
 		for (int i = 0; i < tablero.length; i++) {
 
 			for (int j = 0; j < tablero[i].length; j++) {
+
+				/*
+				 * La torre se mueve en cruz para ello tenemos que imprimir una linea recta
+				 * horizontal y vertical pasando por la torre.
+				 */
+
+				// Para imprimir la columna recta tenemos que marcar la columna que sea siempre
+				// la misma e ir recorriendo cada fila para ir imprimiendo una x en vertical.
 				tablero[i][posColumna] = 'X';
+
+				// Para imprimir la fila recta tenemos que marcar la fila que sea siempre
+				// la misma e ir recorriendo cada columna para ir imprimiendo x en horizontal.
 				tablero[posFila][j] = 'X';
 			}
 		}
 
+		// Por ultimo imprimimos el caracter que representa la torre en la posición
+		// introducida por el usuario.
 		tablero[posFila][posColumna] = pieza;
 
-		// Devolvemos el tablero con la pieza en la posición deseada.
+		// Devolvemos el tablero con la torre en la posición deseada y todas las
+		// posiciones a las que se puede desplazar.
 		return tablero;
 	}
 
+	/**
+	 * Esta función se encarga de devolver un tablero con el alfil representado en
+	 * la posición especificada por el usuario. También se muestra en el tablero
+	 * todas las posiciones en forma de 'X' a las que se puede desplazar el alfil.
+	 * 
+	 * @param posFila    La fila donde se encuentra nuestro alfil.
+	 * @param posColumna La columna donde se encuentra nuestro alfil.
+	 * @param pieza      La cifra que representa el alfil utilizado por el usuario.
+	 * @return El array tablero con el alfil representado y las posiciones a las que
+	 *         se puede desplazar.
+	 */
 	public static char[][] alfil(int posFila, int posColumna, char pieza) {
 		// Creamos el array tablero como char para almacenar la pieza y los movimientos
-		// que podemos hacer con ella.
+		// que podemos hacer con el alfil. El tamaño siempre será de 8x8.
 		char[][] tablero = new char[8][8];
 
+		// Recorremos el tablero entero para poder desplazarnos por cada linea y columna
+		// del tablero.
+		for (int i = 0; i < tablero.length; i++) {
+
+			for (int j = 0; j < tablero[i].length; j++) {
+
+				// Comprobamos si la posición de la fila menos la de la columna mas i esta
+				// comprendida entre los limites del tablero. Si es así imprimirá la primera
+				// diagonal pasando por la pieza. La fila siempre se recorrera pero la columna
+				// solo se imprimirá cuando posición columna menos la de la fila mas i, esa es
+				// la formula para imprimir de forma diagonal.
+				if ((posColumna - posFila + i) < (tablero.length) && (posColumna - posFila + i) >= 0) {
+					tablero[i][posColumna - posFila + i] = 'X';
+
+				}
+
+				// Es lo mismo pero ahora comprobando la otra diagonal para ello se hace
+				// cambiando los signos de las comprobaciones y de la ecuación.
+				if ((posColumna + posFila - i) < (tablero.length) && (posColumna + posFila - i) >= 0) {
+					tablero[i][posColumna + posFila - i] = 'X';
+				}
+
+			}
+		}
+
+		// Por ultimo imprimimos el caracter que representa el alfil en la posición
+		// introducida por el usuario.
+		tablero[posFila][posColumna] = pieza;
+
+		// Devolvemos el tablero con el alfil en la posición deseada y todas las
+		// posiciones a las que se puede desplazar.
+		return tablero;
+	}
+
+	/**
+	 * Esta función se encarga de devolver un tablero con la dama representada en la
+	 * posición especificada por el usuario. También se muestra en el tablero todas
+	 * las posiciones en forma de 'X' a las que se puede desplazar la dama.
+	 * 
+	 * @param posFila    La fila donde se encuentra nuestra dama.
+	 * @param posColumna La columna donde se encuentra nuestra dama.
+	 * @param pieza      La cifra que representa la dama utilizada por el usuario.
+	 * @return El array tablero con la dama representada y las posiciones a las que
+	 *         se puede desplazar.
+	 */
+	public static char[][] dama(int posFila, int posColumna, char pieza) {
+		// Creamos el array tablero como char para almacenar la pieza y los movimientos
+		// que podemos hacer con la dama. El tamaño siempre será de 8x8.
+		char[][] tablero = new char[8][8];
+
+		/*
+		 * En estos for se hace lo mismo que en las funciones de la torre y el alfil se
+		 * recorre las filas y columnas y se mezclan los calculos que hemos hecho en las
+		 * dos ya que la dema se mueve en forma de cruz y diagonal.
+		 */
 		for (int i = 0; i < tablero.length; i++) {
 
 			for (int j = 0; j < tablero[i].length; j++) {
 				tablero[i][posColumna] = 'X';
+
 				tablero[posFila][j] = 'X';
+
+				if ((posColumna - posFila + i) < (tablero.length) && (posColumna - posFila + i) >= 0) {
+					tablero[i][posColumna - posFila + i] = 'X';
+
+				}
+
+				if ((posColumna + posFila - i) < (tablero.length) && (posColumna + posFila - i) >= 0) {
+					tablero[i][posColumna + posFila - i] = 'X';
+				}
+
 			}
 		}
 
+		// Por ultimo imprimimos el caracter que representa la dama en la posición
+		// introducida por el usuario.
 		tablero[posFila][posColumna] = pieza;
 
-		// Devolvemos el tablero con la pieza en la posición deseada.
-		return tablero;
-	}
-
-	public static char[][] dama(int posFila, int posColumna, char pieza) {
-		// Creamos el array tablero como char para almacenar la pieza y los movimientos
-		// que podemos hacer con ella.
-		char[][] tablero = new char[8][8];
-
-		// Devolvemos el tablero con la pieza en la posición deseada.
+		// Devolvemos el tablero con la dama en la posición deseada y todas las
+		// posiciones a las que se puede desplazar.
 		return tablero;
 	}
 
@@ -235,6 +335,22 @@ public class Ejercicio4 {
 		// que podemos hacer con ella.
 		char[][] tablero = new char[8][8];
 
+		for (int i = posFila - 2; i < posFila + 2; i++) {
+
+			for (int j = 0; j < 2; j++) {
+				tablero[posFila - 2][posColumna + 1] = 'X';
+				tablero[posFila - 2][posColumna - 1] = 'X';
+				tablero[posFila - 1][posColumna + 2] = 'X';
+				tablero[posFila - 1][posColumna - 2] = 'X';
+
+				tablero[posFila + 1][posColumna + 2] = 'X';
+				tablero[posFila + 1][posColumna - 2] = 'X';
+				tablero[posFila + 2][posColumna + 1] = 'X';
+				tablero[posFila + 2][posColumna - 1] = 'X';
+			}
+		}
+
+		tablero[posFila][posColumna] = pieza;
 		// Devolvemos el tablero con la pieza en la posición deseada.
 		return tablero;
 	}
