@@ -143,36 +143,38 @@ public class Ejercicio4 {
 	 */
 	public static char validarPieza() {
 		// Creamos la variable piezaAjedrez como char para almacenar la pieza
-		// sellecionada por el usuario.
-		char piezaAjedrez;
+		// sellecionada por el usuario. La inicializamos a cualquier caracter para que
+		// no de error.
+		char piezaAjedrez = 'J';
 
-		// Comprobamos si la piezaAjedrez es distinta a las que se encuentran en el
-		// switch, si es así hacemos que se vuelva a preguntar al usuario.
+		// Creamos la variable valido como boolean para comprobar si el caracter
+		// introducido es valido o no.
+		boolean valido;
+
+		// Comprobamos mediante un do-while cuando seguir preguntando la posición y
+		// siempre que valido sea true que será cuando se de algun error.
 		do {
+			// Con el try-catch y el assert comprobamos que el caracter introducido sea
+			// correcto y si no es así mostramos un mensaje de error.
+			try {
+				// Le preguntamos al usuario que introduzca la pieza que desea y la leemos.
+				System.out.println("Introduce una pieza: ");
+				piezaAjedrez = sc.nextLine().charAt(0);
 
-			// Le preguntamos al usuario que introduzca la pieza que desea y la leemos.
-			System.out.println("Introduce una pieza: ");
-			piezaAjedrez = sc.nextLine().charAt(0);
-
-			// Con el switch comprobamos si la pieza introducida es valida, si no es así
-			// devolvemos la 'j', la del default y volvemos a preguntar de nuevo.
-			switch (piezaAjedrez) {
-			case 'T' -> {
-				piezaAjedrez = 'T';
-			}
-			case 'A' -> {
-				piezaAjedrez = 'A';
-			}
-			case 'D' -> {
-				piezaAjedrez = 'D';
-			}
-			case 'C' -> {
-				piezaAjedrez = 'C';
-			}
-			default -> piezaAjedrez = 'J';
+				// Comprobamos que el caracter es uno de los que se solicitan si no es así salta
+				// el assert y muestra un error.
+				assert (piezaAjedrez == 'T' || piezaAjedrez == 'A' || piezaAjedrez == 'D' || piezaAjedrez == 'C')
+						: "El caracter introducido no es valido";
+				valido = false;
+			} catch (AssertionError e) {
+				System.out.println(e.getMessage());
+				valido = true;
+			} catch (InputMismatchException e) {
+				System.out.println("El valor introducido no es valido");
+				valido = true;
 			}
 
-		} while (piezaAjedrez == 'J');
+		} while (valido);
 
 		// Devolvemos la pieza valida introducida por el usuario.
 		return piezaAjedrez;
@@ -320,26 +322,68 @@ public class Ejercicio4 {
 		return tablero;
 	}
 
+	/**
+	 * Esta función se encarga de devolver un tablero con el caballo representado en
+	 * la posición especificada por el usuario. También se muestra en el tablero
+	 * todas las posiciones en forma de 'X' a las que se puede desplazar el caballo.
+	 * 
+	 * @param posFila    La fila donde se encuentra nuestro caballo.
+	 * @param posColumna La columna donde se encuentra nuestro caballo.
+	 * @param pieza      La cifra que representa el caballo utilizado por el
+	 *                   usuario.
+	 * @return El array tablero con el caballo representado y las posiciones a las
+	 *         que se puede desplazar.
+	 */
 	public static char[][] caballo(int posFila, int posColumna, char pieza) {
 		// Creamos el array tablero como char para almacenar la pieza y los movimientos
 		// que podemos hacer con ella.
 		char[][] tablero = new char[8][8];
 
-		// if () {
-		tablero[posFila - 2][posColumna + 1] = 'X';
-		tablero[posFila - 2][posColumna - 1] = 'X';
-		tablero[posFila - 1][posColumna + 2] = 'X';
-		tablero[posFila - 1][posColumna - 2] = 'X';
+		/*
+		 * Aqui representamos todos los movimientos que puede ejecutar un caballo a su
+		 * alrededor y para cada uno de ellos devemos de comprobar que se encuentren
+		 * entre las posiciones 0 y 7, si no es así podria saltar una excepción.
+		 */
+		if ((posFila - 2 >= 0 && posFila - 2 < tablero.length)
+				&& (posColumna + 1 >= 0 && posColumna + 1 < tablero.length)) {
+			tablero[posFila - 2][posColumna + 1] = 'X';
+		}
+		if ((posFila - 2 >= 0 && posFila - 2 < tablero.length)
+				&& (posColumna - 1 >= 0 && posColumna - 1 < tablero.length)) {
 
-		tablero[posFila + 1][posColumna + 2] = 'X';
-		tablero[posFila + 1][posColumna - 2] = 'X';
-		tablero[posFila + 2][posColumna + 1] = 'X';
-		tablero[posFila + 2][posColumna - 1] = 'X';
+			tablero[posFila - 2][posColumna - 1] = 'X';
+		}
+		if ((posFila - 1 >= 0 && posFila - 1 < tablero.length)
+				&& (posColumna + 2 >= 0 && posColumna + 2 < tablero.length)) {
+			tablero[posFila - 1][posColumna + 2] = 'X';
+		}
+		if ((posFila - 1 >= 0 && posFila - 1 < tablero.length)
+				&& (posColumna - 2 >= 0 && posColumna - 2 < tablero.length)) {
+			tablero[posFila - 1][posColumna - 2] = 'X';
+		}
+		if ((posFila + 1 >= 0 && posFila + 1 < tablero.length)
+				&& (posColumna + 2 >= 0 && posColumna + 2 < tablero.length)) {
+			tablero[posFila + 1][posColumna + 2] = 'X';
+		}
+		if ((posFila + 1 >= 0 && posFila + 1 < tablero.length)
+				&& (posColumna - 2 >= 0 && posColumna - 2 < tablero.length)) {
+			tablero[posFila + 1][posColumna - 2] = 'X';
+		}
+		if ((posFila + 2 >= 0 && posFila + 2 < tablero.length)
+				&& (posColumna + 1 >= 0 && posColumna + 1 < tablero.length)) {
+			tablero[posFila + 2][posColumna + 1] = 'X';
+		}
+		if ((posFila + 2 >= 0 && posFila + 2 < tablero.length)
+				&& (posColumna - 1 >= 0 && posColumna - 1 < tablero.length)) {
+			tablero[posFila + 2][posColumna - 1] = 'X';
+		}
 
-		// }
-
+		// Por ultimo imprimimos el caracter que representa el caballo en la posición
+		// introducida por el usuario.
 		tablero[posFila][posColumna] = pieza;
-		// Devolvemos el tablero con la pieza en la posición deseada.
+
+		// Devolvemos el tablero con el caballo en la posición deseada y todas las
+		// posiciones a las que se puede desplazar.
 		return tablero;
 	}
 
