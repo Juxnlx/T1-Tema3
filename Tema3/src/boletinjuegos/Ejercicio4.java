@@ -29,6 +29,10 @@ public class Ejercicio4 {
 		// que hemos seleccionado.
 		char pieza;
 
+		// Declaramos el array tablero para almacenar la tabla devuelta por las
+		// distintas funciones para cada pieza.
+		char tablero[][] = null;
+
 		// Comprobamos si la posFila es correcta comprobandola con la función
 		// validación.
 		posFila = validarPos("fila");
@@ -56,41 +60,30 @@ public class Ejercicio4 {
 		pieza = validarPieza();
 
 		// Comprobamos cual es la pieza introducida por el usuario. Y dependiendo de la
-		// seleccionada se llamará a la función correspondiente y se mostrará mediante
-		// un for-each la tabla devuelta por la función.
+		// seleccionada se llamará a la función correspondiente y se le asignara a la
+		// tabla tablero la función correspondiente.
 		switch (pieza) {
 		case 'T' -> {
-			for (char tabla[] : torre(posFila, posColumna, pieza)) {
-				for (char valor : tabla) {
-					System.out.print(valor + "|");
-				}
-				System.out.println();
-			}
+			tablero = torre(posFila, posColumna, pieza);
 		}
 		case 'A' -> {
-			for (char tabla[] : alfil(posFila, posColumna, pieza)) {
-				for (char valor : tabla) {
-					System.out.print(valor + "|");
-				}
-				System.out.println();
-			}
+			tablero = alfil(posFila, posColumna, pieza);
 		}
 		case 'D' -> {
-			for (char tabla[] : dama(posFila, posColumna, pieza)) {
-				for (char valor : tabla) {
-					System.out.print(valor + "|");
-				}
-				System.out.println();
-			}
+			tablero = dama(posFila, posColumna, pieza);
 		}
 		case 'C' -> {
-			for (char tabla[] : caballo(posFila, posColumna, pieza)) {
-				for (char valor : tabla) {
-					System.out.print(valor + "|");
-				}
-				System.out.println();
-			}
+			tablero = caballo(posFila, posColumna, pieza);
 		}
+		}
+
+		// Recorremos el array tablero con la tabla devuelta por la función
+		// correspondiente.
+		for (char tabla[] : tablero) {
+			for (char valor : tabla) {
+				System.out.print(valor + "|");
+			}
+			System.out.println();
 		}
 
 		// Cierre de Scanner
@@ -251,25 +244,22 @@ public class Ejercicio4 {
 		// del tablero.
 		for (int i = 0; i < tablero.length; i++) {
 
-			for (int j = 0; j < tablero[i].length; j++) {
-
-				// Comprobamos si la posición de la fila menos la de la columna mas i esta
-				// comprendida entre los limites del tablero. Si es así imprimirá la primera
-				// diagonal pasando por la pieza. La fila siempre se recorrera pero la columna
-				// solo se imprimirá cuando posición columna menos la de la fila mas i, esa es
-				// la formula para imprimir de forma diagonal.
-				if ((posColumna - posFila + i) < (tablero.length) && (posColumna - posFila + i) >= 0) {
-					tablero[i][posColumna - posFila + i] = 'X';
-
-				}
-
-				// Es lo mismo pero ahora comprobando la otra diagonal para ello se hace
-				// cambiando los signos de las comprobaciones y de la ecuación.
-				if ((posColumna + posFila - i) < (tablero.length) && (posColumna + posFila - i) >= 0) {
-					tablero[i][posColumna + posFila - i] = 'X';
-				}
+			// Comprobamos si la posición de la fila menos la de la columna mas i esta
+			// comprendida entre los limites del tablero. Si es así imprimirá la primera
+			// diagonal pasando por la pieza. La fila siempre se recorrera pero la columna
+			// solo se imprimirá cuando posición columna menos la de la fila mas i, esa es
+			// la formula para imprimir de forma diagonal.
+			if ((posColumna - posFila + i) < (tablero.length) && (posColumna - posFila + i) >= 0) {
+				tablero[i][posColumna - posFila + i] = 'X';
 
 			}
+
+			// Es lo mismo pero ahora comprobando la otra diagonal para ello se hace
+			// cambiando los signos de las comprobaciones y de la ecuación.
+			if ((posColumna + posFila - i) < (tablero.length) && (posColumna + posFila - i) >= 0) {
+				tablero[i][posColumna + posFila - i] = 'X';
+			}
+
 		}
 
 		// Por ultimo imprimimos el caracter que representa el alfil en la posición
@@ -335,20 +325,18 @@ public class Ejercicio4 {
 		// que podemos hacer con ella.
 		char[][] tablero = new char[8][8];
 
-		for (int i = posFila - 2; i < posFila + 2; i++) {
+		// if () {
+		tablero[posFila - 2][posColumna + 1] = 'X';
+		tablero[posFila - 2][posColumna - 1] = 'X';
+		tablero[posFila - 1][posColumna + 2] = 'X';
+		tablero[posFila - 1][posColumna - 2] = 'X';
 
-			for (int j = 0; j < 2; j++) {
-				tablero[posFila - 2][posColumna + 1] = 'X';
-				tablero[posFila - 2][posColumna - 1] = 'X';
-				tablero[posFila - 1][posColumna + 2] = 'X';
-				tablero[posFila - 1][posColumna - 2] = 'X';
+		tablero[posFila + 1][posColumna + 2] = 'X';
+		tablero[posFila + 1][posColumna - 2] = 'X';
+		tablero[posFila + 2][posColumna + 1] = 'X';
+		tablero[posFila + 2][posColumna - 1] = 'X';
 
-				tablero[posFila + 1][posColumna + 2] = 'X';
-				tablero[posFila + 1][posColumna - 2] = 'X';
-				tablero[posFila + 2][posColumna + 1] = 'X';
-				tablero[posFila + 2][posColumna - 1] = 'X';
-			}
-		}
+		// }
 
 		tablero[posFila][posColumna] = pieza;
 		// Devolvemos el tablero con la pieza en la posición deseada.
