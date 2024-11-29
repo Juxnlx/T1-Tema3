@@ -20,10 +20,12 @@ public class Ejercicio1 {
 		// introducidas por cada jugador. Este tablero será de 3x3.
 		char[][] tablero = new char[3][3];
 
+		// Creamos el array tabla para almacenar la tabla devuelta por el jugador con la
+		// ficha correspondiente al jugador.
 		char[][] tabla;
 
-		boolean jugador = true;
-
+		// Con esta variable asignamos cuando es la tirada del jugador 1 y cuando la del
+		// jugador 2.
 		int turno = 1;
 
 		// Inicializamos nuestro tablero a guiones ya que no hay ninguna ficha
@@ -32,9 +34,16 @@ public class Ejercicio1 {
 			Arrays.fill(tablero[i], '-');
 		}
 
+		// Mensaje de bienvenida a los jugadores al juego del tres en rayas.
 		System.out.println("Bienvenidos al 3 en rayas ¡!VAMOS A JUGAR");
 		;
 
+		/*
+		 * Tenemos que poner la primera tirada del jugador 1 fuera, para no tener que
+		 * inicializar el array tabla, No importaría hacer la comprobación de si es
+		 * ganador o no, porque en la primera tabla es imponsible hacer un tres en
+		 * rayas.
+		 */
 		tabla = jugador(tablero, "Jugador I", 'X');
 
 		for (int i = 0; i < tabla.length; i++) {
@@ -44,17 +53,29 @@ public class Ejercicio1 {
 			System.out.println();
 		}
 
+		/**
+		 * Comprobamos si la función validar nos devuelve true o false, si nos devuelve
+		 * false, seguimos introducidendo ficha, hasta que devuelva true eso significa
+		 * que alguno de los dos jugadores a realizado un 3 en rayas.
+		 */
 		while (!validar(tabla)) {
 
+			// Comprobamos si el turno es par o no para que siempre le pregunte primero a 1
+			// y luego a otro. En el caso de ser par empieza el jugador 1 y si es impar el
+			// juagdor 2.
 			if (turno % 2 == 0) {
+
+				// Asignamos al array tabla el tablero devuelto por el jugador 1.
 				tabla = jugador(tablero, "Jugador I", 'X');
 
+				// Recorremos ese tablero y lo mostramos por pantalla.
 				for (int i = 0; i < tabla.length; i++) {
 					for (int j = 0; j < tabla[i].length; j++) {
 						System.out.print(tabla[i][j] + " ");
 					}
 					System.out.println();
 				}
+				// Si el turno es impar hacemos lo mismo pero con el juagdor 2.
 			} else {
 				tabla = jugador(tablero, "Jugador II", 'O');
 
@@ -65,6 +86,9 @@ public class Ejercicio1 {
 					System.out.println();
 				}
 			}
+
+			// Al final de turno incrementamos el contador a +1 para que en la siguiente
+			// vuelta sea turno del siguiente juagdor.
 			turno++;
 		}
 
@@ -130,32 +154,6 @@ public class Ejercicio1 {
 		// Devolvemos la tabla pasada como parametro.
 		return t;
 	}
-
-	/*
-	 * public static char[][] jugador2(char[][] t) {
-	 * 
-	 * boolean posValida;
-	 * 
-	 * // Creamos la variable posFila para almacenar la posición de la fila
-	 * introducida // por el usuario. int fila;
-	 * 
-	 * // Creamos la variable posColm para almacenar la posición de la columna //
-	 * introducida por el usuario. int columna;
-	 * 
-	 * do {
-	 * System.out.print("Jugador II - Introduce la posición de la fila 0 - 2: ");
-	 * fila = sc.nextInt();
-	 * 
-	 * System.out.print("Jugador II - Introduce la posición de la columna 0 - 2: ");
-	 * columna = sc.nextInt();
-	 * 
-	 * if (t[fila][columna] == '-') { t[fila][columna] = 'O'; posValida = false; }
-	 * else { posValida = true; }
-	 * 
-	 * } while (posValida);
-	 * 
-	 * return t; }
-	 */
 
 	public static boolean validar(char[][] tablero) {
 
