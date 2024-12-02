@@ -40,8 +40,6 @@ public class Ejercicio4 {
 			minesweeper[minas] = "*";
 		}
 
-		System.out.println(Arrays.toString(minesweeper));
-
 		if (minesweeper[0].equals("*")) {
 			if (!minesweeper[1].equals("*")) {
 				minesweeper[1] = "1";
