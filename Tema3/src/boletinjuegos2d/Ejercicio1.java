@@ -92,6 +92,7 @@ public class Ejercicio1 {
 			turno++;
 		}
 
+		esGanador(turno);
 	}
 
 	/**
@@ -159,30 +160,37 @@ public class Ejercicio1 {
 
 		boolean ganador = false;
 
-		int cont = 0;
+		int contX = 0;
+		int contO = 0;
 
+		int miConio = 2;
+		
 		int indiceI = 0;
 
 		int indiceJ = 0;
 
 		while (!ganador && indiceI < tablero.length) {
 
-			cont = 0;
+			contX = 0;
+			contO = 0;
 			indiceJ = 0;
+			miConio = 2;
 
 			while (indiceJ < tablero[indiceI].length) {
 
-				if (tablero[indiceI][indiceJ] == 'X') {
-					cont++;
+				if (tablero[indiceI][indiceJ] == 'X' || tablero[indiceJ][indiceI] == 'X'
+						|| tablero[indiceJ][indiceJ] == 'X') {
+					contX++;
+				} if (tablero[indiceI][indiceJ] == 'O' || tablero[indiceJ][indiceI] == 'O'
+						|| tablero[indiceJ][indiceJ] == 'O') {
+					contO++;
 				}
-				if (tablero[indiceI][indiceJ] == 'O') {
-					cont++;
-				}
-
+miConio--;
 				indiceJ++;
+
 			}
 
-			if (cont == 3) {
+			if (contX == 3 || contO == 3) {
 				ganador = true;
 			}
 
@@ -190,6 +198,17 @@ public class Ejercicio1 {
 		}
 
 		return ganador;
+	}
+
+	public static void esGanador(int turno) {
+
+		if (turno % 2 == 0) {
+			System.out.println("¡FELICIDADES! Jugador 2 has ganado");
+		} else if  (turno % 2 != 0) {
+			System.out.println("¡FELICIDADES! Jugador 1 has ganado");
+		} else {
+			System.out.println("¡EMPATE!");
+		}
 	}
 
 }

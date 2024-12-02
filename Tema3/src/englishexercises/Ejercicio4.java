@@ -21,6 +21,8 @@ public class Ejercicio4 {
 
 		int minas;
 
+		int cont = 13;
+
 		Random rand = new Random();
 
 		// We create the Scanner to read the position entered by the user.
@@ -33,37 +35,51 @@ public class Ejercicio4 {
 		for (int i = 1; i <= 6; i++) {
 
 			while (minesweeper[minas] == "*") {
-				minas = rand.nextInt(0, 19);
+				minas = rand.nextInt(0, 20);
 			}
 			minesweeper[minas] = "*";
 		}
 
 		System.out.println(Arrays.toString(minesweeper));
-		System.out.println();
 
 		if (minesweeper[0].equals("*")) {
-			minesweeper[1] = "1";
+			if (!minesweeper[1].equals("*")) {
+				minesweeper[1] = "1";
+			}
+		} else if (minesweeper[1].equals("*")) {
+			minesweeper[0] = "1";
 		}
 
 		if (minesweeper[minesweeper.length - 1].equals("*")) {
-			minesweeper[minesweeper.length - 2] = "1";
+			if (!minesweeper[minesweeper.length - 2].equals("*")) {
+				minesweeper[minesweeper.length - 2] = "1";
+			}
+		} else if (minesweeper[minesweeper.length - 2].equals("*")) {
+			minesweeper[minesweeper.length - 1] = "1";
 		}
 
 		for (int i = 1; i < minesweeper.length - 1; i++) {
-			if (minesweeper[i].equals("*") && (minesweeper[i + 1].equals("*") || minesweeper[i + 1].equals("*"))) {
-				minesweeper[i] = "*";
 
+			if (minesweeper[i].equals("0")) {
+				if (minesweeper[i - 1].equals("*")) {
+					minesweeper[i] = "1";
+				} else if (minesweeper[i - 1].equals("1")) {
+					minesweeper[i] = "0";
+				}
 			}
-			if (minesweeper[i - 1].equals("*") && minesweeper[i + 1].equals("*")) {
-				minesweeper[i] = "2";
 
-			} else if (minesweeper[i + 1].equals("*") || minesweeper[i + 1].equals("*")) {
-				minesweeper[i] = "1";
+			if (minesweeper[i].equals("*")) {
+				if (minesweeper[i - 1].equals("0"))
+					minesweeper[i - 1] = "1";
+			}
+
+			if (minesweeper[i - 1].equals("*") && minesweeper[i + 1].equals("*")) {
+				if (!minesweeper[i].equals("*")) {
+					minesweeper[i] = "2";
+				}
 			}
 
 		}
-
-		System.out.println(Arrays.toString(minesweeper));
 
 		// We initialize the tracks table to ▒.
 		Arrays.fill(tracks, "▒");
@@ -74,7 +90,10 @@ public class Ejercicio4 {
 
 		// With this while we check if the value found in the entered position
 		// isdifferent from "*".
-		while (!minesweeper[userPosition].equals("*")) {
+		while (!minesweeper[userPosition].equals("*") && cont != 6) {
+			
+			cont = -1; 
+			
 			// We match in our tracks table the same track that is on our game table.
 			tracks[userPosition] = minesweeper[userPosition];
 
@@ -88,13 +107,21 @@ public class Ejercicio4 {
 			// We ask the user again to enter the position they want to discover.
 			System.out.print("Enter the position to discover 0 - 19 -->");
 			userPosition = sc.nextInt();
-
+			
+			for (int i = 0; i < tracks.length; i++) {
+				if (tracks[i].equals("▒")) {
+					cont++;
+				}
+			}
 		}
 
 		// Message displayed if the while has ended due to entering a position where one
 		// of the 6 mines was located.
-		System.out.println("BOOOOOM!! Sorry, you stepped on a mine.");
-
+		if (cont == 6) {
+			System.out.println("¡Felicidades! No has hecho explotar ninguna mina");
+		} else {
+			System.out.println("BOOOOOM!! Sorry, you stepped on a mine.");
+		}
 		// Closing Scanner
 		sc.close();
 	}
