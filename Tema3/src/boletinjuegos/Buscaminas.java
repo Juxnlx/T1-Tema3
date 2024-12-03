@@ -82,7 +82,7 @@ public class Buscaminas {
 		 */
 		for (int i = 0; i < pistas.length; i++) {
 			// Hacemos uso de la clase Arrays para usar el fill y añadir a cada fila 0.
-			Arrays.fill(pistas[i], '▒');
+			Arrays.fill(pistas[i], '-');
 		}
 
 		// Añadimos las pistas a nuestro tablero haciendo un llamamiento a la función
@@ -101,6 +101,8 @@ public class Buscaminas {
 			}
 			System.out.println();
 		}
+		
+		System.out.println();
 
 		// Comprobamos si la posición introducida es distinta a una mina y si el
 		// contador es distinto a el número de minas, porque si llega al número de minas
