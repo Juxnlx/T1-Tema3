@@ -31,6 +31,9 @@ public class Buscaminas {
 		// usurio.
 		int columna;
 
+		// Creamos la variable cont para saber las figuras que quedan sin introducir.
+		int cont;
+
 		// Creamos el Scanner para leer el tamaño del tablero por teclado.
 		Scanner sc = new Scanner(System.in);
 
@@ -43,6 +46,18 @@ public class Buscaminas {
 		// su tablero y las leemos.
 		System.out.print("Introduce el número de minas: ");
 		numMinas = sc.nextInt();
+
+		// Le pedimos al usuario que introduzca el número de la fila y lo leemos.
+		System.out.print("Introduce el número de la fila: ");
+		fila = sc.nextInt();
+
+		// Le pedimos al usuario que introduzca el número de la columna y lo leemos.
+		System.out.print("Introduce el número de la columna: ");
+		columna = sc.nextInt();
+
+		// Inicializamos el cont a todas las posiciones del tablero - 1, ya que es la
+		// primera.
+		cont = (size * size) - 1;
 
 		// Creamos el array con el tamaño introducido por el usuario.
 		buscaMinas = new char[size][size];
@@ -60,6 +75,16 @@ public class Buscaminas {
 			Arrays.fill(buscaMinas[i], '0');
 		}
 
+		/*
+		 * Inicializamos nuestro array pistas a ▒.
+		 * 
+		 * Creamos un for para recorres cada fila de nuestro array.
+		 */
+		for (int i = 0; i < pistas.length; i++) {
+			// Hacemos uso de la clase Arrays para usar el fill y añadir a cada fila 0.
+			Arrays.fill(pistas[i], '▒');
+		}
+
 		// Añadimos las pistas a nuestro tablero haciendo un llamamiento a la función
 		// generadorPistas, para añadir las pistas a nuestro tablero.
 		generadorMinas(buscaMinas, numMinas);
@@ -68,10 +93,43 @@ public class Buscaminas {
 		// nuestro array buscaMinas.
 		generarPistas(buscaMinas);
 
-		// Mostramos el tablero haciendo un llamamiento a nuestra función
-		// imprimirTablero.
-		imprimirTablero(buscaMinas);
+		// Comprobamos el tablero completo y solucionado
 
+		for (int i = 0; i < buscaMinas.length; i++) {
+			for (int j = 0; j < buscaMinas[i].length; j++) {
+				System.out.print(buscaMinas[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+		// Comprobamos si la posición introducida es distinta a una mina y si el
+		// contador es distinto a el número de minas, porque si llega al número de minas
+		// restantes significa que ya ha ganado porque las minas que quedan sin
+		// descubrir son las minas.
+		while (buscaMinas[fila][columna] != '*' && cont != numMinas) {
+			// Mostramos el tablero haciendo un llamamiento a nuestra función
+			// imprimirTablero.
+			imprimirTablero(buscaMinas, pistas, fila, columna);
+
+			// Le pedimos al usuario que introduzca el número de la fila y lo leemos.
+			System.out.print("Introduce el número de la fila: ");
+			fila = sc.nextInt();
+
+			// Le pedimos al usuario que introduzca el número de la columna y lo leemos.
+			System.out.print("Introduce el número de la columna: ");
+			columna = sc.nextInt();
+
+			cont--;
+		}
+
+		if (cont == numMinas) {
+			System.out.println("¡Felicidades! No has hecho explotar ninguna mina");
+		} else {
+			System.out.println("BOOOOOM!! Lo siento has pisado una mina.");
+		}
+
+		// Cierre de Scanner
+		sc.close();
 	}
 
 	public static void generadorMinas(char[][] t, int numM) {
@@ -120,99 +178,49 @@ public class Buscaminas {
 
 	public static void generarPistas(char[][] t) {
 
-		int cont = 0;
+		int filaVecina;
+		int columnaVecina;
 
-		for (int i = 1; i < t.length - 1; i++) {
-			
-			for (int j = 1; j < t[i].length - 1; j++) {
-				cont = 0;
-				
-				if (t[i][j] == '*') {
+		// Recorremos todo el tablero.
+		for (int i = 0; i < t.length; i++) {
+			for (int j = 0; j < t[i].length; j++) {
+				// Si la celda actual no es una mina, calculamos la cantidad de minas alrededor.
+				if (t[i][j] != '*') {
+					int cont = 0;
 
-					if (t[i][j - 1] != '*') {
-						t[i][j - 1] = '1';
+					// Recorremos las 8 posibles direcciones alrededor de la celda actual.
+					for (int x = -1; x <= 1; x++) {
+						for (int y = -1; y <= 1; y++) {
+							filaVecina = i + x;
+							columnaVecina = j + y;
+
+							// Verificamos si la celda vecina está dentro del tablero y es una mina.
+							if (filaVecina >= 0 && filaVecina < t.length && columnaVecina >= 0
+									&& columnaVecina < t[i].length && t[filaVecina][columnaVecina] == '*') {
+								cont++;
+							}
+						}
 					}
 
-					if (t[i][j + 1] != '*') {
-						t[i][j + 1] = '1';
-					}
-
-					if (t[i - 1][j] != '*') {
-						t[i - 1][j] = '1';
-					}
-
-					if (t[i + 1][j] != '*') {
-						t[i + 1][j] = '1';
-					}
-
-					if (t[i - 1][j - 1] != '*') {
-						t[i - 1][j - 1] = '1';
-					}
-
-					if (t[i + 1][j + 1] != '*') {
-						t[i + 1][j + 1] = '1';
-					}
-
-					if (t[i - 1][j + 1] != '*') {
-						t[i - 1][j + 1] = '1';
-					}
-
-					if (t[i + 1][j - 1] != '*') {
-						t[i + 1][j - 1] = '1';
-					}
-
-				} else if (t[i][j] != '*') {
-
-					if (t[i][j - 1] == '*') {
-						cont++;
-					}
-
-					if (t[i][j + 1] == '*') {
-						cont++;
-					}
-
-					if (t[i - 1][j] == '*') {
-						cont++;
-					}
-
-					if (t[i + 1][j] == '*') {
-						cont++;
-					}
-
-					if (t[i - 1][j - 1] == '*') {
-						cont++;
-					}
-
-					if (t[i + 1][j + 1] == '*') {
-						cont++;
-					}
-
-					if (t[i - 1][j + 1] == '*') {
-						cont++;
-					}
-
-					if (t[i + 1][j - 1] == '*') {
-						cont++;
-					}
-					
+					// Si hay minas alrededor, asignamos el número correspondiente a la celda.
+					t[i][j] = Integer.toString(cont).charAt(0);
 				}
-				if (cont >= 2) {
-						t[i][j] = '2';
-					}
+
 			}
 		}
+
 	}
 
-	public static void imprimirTablero(char[][] t) {
+	public static void imprimirTablero(char[][] tablero, char[][] pistas, int fila, int columna) {
 
-		// Mediante este for-each recorremos cada posición de nuestro array y lo vamos
-		// mostrando.
-		for (char[] filasTablero : t) {
-			for (char valor : filasTablero) {
+		pistas[fila][columna] = tablero[fila][columna];
+
+		for (char[] valores : pistas) {
+			for (char valor : valores) {
 				System.out.print(valor + " ");
 			}
 			System.out.println();
 		}
-	}
 
+	}
 }
