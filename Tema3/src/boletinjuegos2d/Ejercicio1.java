@@ -163,7 +163,7 @@ public class Ejercicio1 {
 		int contX = 0;
 		int contO = 0;
 
-		int miConio = 2;
+		int cont = 2;
 		
 		int indiceI = 0;
 
@@ -174,7 +174,7 @@ public class Ejercicio1 {
 			contX = 0;
 			contO = 0;
 			indiceJ = 0;
-			miConio = 2;
+			cont = 2;
 
 			while (indiceJ < tablero[indiceI].length) {
 
@@ -185,7 +185,7 @@ public class Ejercicio1 {
 						|| tablero[indiceJ][indiceJ] == 'O') {
 					contO++;
 				}
-miConio--;
+cont--;
 				indiceJ++;
 
 			}

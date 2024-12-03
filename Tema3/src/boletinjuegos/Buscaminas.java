@@ -20,7 +20,7 @@ public class Buscaminas {
 		// introducido por el usuario.
 		int size;
 
-		// Creamos al variable numMinas como int para almacenar el número de minas que
+		// Creamos la variable numMinas como int para almacenar el número de minas que
 		// desea el usuario tener en el tablero.
 		int numMinas;
 
