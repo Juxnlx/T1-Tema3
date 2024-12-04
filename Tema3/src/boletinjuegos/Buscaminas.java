@@ -85,8 +85,8 @@ public class Buscaminas {
 			Arrays.fill(pistas[i], '-');
 		}
 
-		// Añadimos las pistas a nuestro tablero haciendo un llamamiento a la función
-		// generadorPistas, para añadir las pistas a nuestro tablero.
+		// Añadimos las minas a nuestro tablero haciendo un llamamiento a la función
+		// generadoeMinas, para añadir las minas a nuestro tablero.
 		generadorMinas(buscaMinas, numMinas);
 
 		// Llamamos a la función generarPistas para añadir las respectivas pistas a

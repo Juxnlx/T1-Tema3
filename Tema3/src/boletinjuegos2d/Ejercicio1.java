@@ -164,7 +164,7 @@ public class Ejercicio1 {
 		int contO = 0;
 
 		int cont = 2;
-		
+
 		int indiceI = 0;
 
 		int indiceJ = 0;
@@ -181,11 +181,12 @@ public class Ejercicio1 {
 				if (tablero[indiceI][indiceJ] == 'X' || tablero[indiceJ][indiceI] == 'X'
 						|| tablero[indiceJ][indiceJ] == 'X') {
 					contX++;
-				} if (tablero[indiceI][indiceJ] == 'O' || tablero[indiceJ][indiceI] == 'O'
+				}
+				if (tablero[indiceI][indiceJ] == 'O' || tablero[indiceJ][indiceI] == 'O'
 						|| tablero[indiceJ][indiceJ] == 'O') {
 					contO++;
 				}
-cont--;
+				cont--;
 				indiceJ++;
 
 			}
@@ -204,7 +205,7 @@ cont--;
 
 		if (turno % 2 == 0) {
 			System.out.println("¡FELICIDADES! Jugador 2 has ganado");
-		} else if  (turno % 2 != 0) {
+		} else if (turno % 2 != 0) {
 			System.out.println("¡FELICIDADES! Jugador 1 has ganado");
 		} else {
 			System.out.println("¡EMPATE!");
